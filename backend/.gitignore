@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+npm-debug.log
+
+# Optional npm cache directory
+.npm
+
+# Environment variables file
+.env
+
+# IDE files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
