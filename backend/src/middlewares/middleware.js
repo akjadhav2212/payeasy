@@ -4,10 +4,8 @@ function authMiddleware(req, res, next){
     if(!authHeader || !authHeader.startsWith("Bearer ")){
         return res.status(403);
     }
-
     const token = req.headers.authorization.split(' ')[1];
     try{
-        
         const payload = jwt.verify(token,process.env.JWT_SECRET);
         req.headers.userId = payload.userid;
         next();

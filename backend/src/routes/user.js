@@ -6,6 +6,7 @@ const argon2 = require("argon2");
 const User = require("../models/userSchema.model");
 const {authMiddleware} = require("../middlewares/middleware");
 const { trusted } = require("mongoose");
+const bankAccount = require('../models/bankaccountSchema.model')
 
 const signupBody = z.object({
     username: z.string().email(),
@@ -28,6 +29,8 @@ router.post("/signup", async (req, res) => {
 		const existinguser = await User.findOne({username:username});
 		if(!existinguser){
 			const user = await User.create({username,password,firstname,lastname});
+			const balance = parseInt(Math.random()*100000);
+			const userbankAccout = await bankAccount.create({id:user._id,balance:balance});
 			const token = jwt.sign({"userid":user._id},process.env.JWT_SECRET);
 			return res.send({"token":token});
 		}
