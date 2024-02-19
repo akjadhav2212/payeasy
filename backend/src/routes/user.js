@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
 		const password = await argon2.hash(validatedData.password);
 		const firstname = validatedData.firstname;
 		const lastname = validatedData.lastname;
-
+		
 		const existinguser = await User.findOne({username:username});
 		if(!existinguser){
 			const user = await User.create({username,password,firstname,lastname});
